@@ -22,7 +22,7 @@ jobs:
       - name: Run Ruff
         run: ruff check .
 
-  test:
+test:
     name: Run Pytest
     runs-on: ubuntu-latest
     steps:
@@ -37,4 +37,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Pytest
+        env:
+          DATABASE_URL: sqlite:///:memory:
         run: PYTHONPATH=. pytest -v
